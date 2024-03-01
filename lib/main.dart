@@ -1,41 +1,85 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppTabBar extends StatelessWidget {
+  const AppTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      title: "Sabritas",
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightGreen,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MiPaguinaInicial(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaguinaInicial extends StatefulWidget {
+  const MiPaguinaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaguinaInicial> createState() => _MiPaguinaInicialState();
+}
+
+class _MiPaguinaInicialState extends State<MiPaguinaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                text: "inicio",
+              ),
+              Tab(
+                text: "Tarifas",
+              ),
+              Tab(
+                text: "Servicios",
+              ),
+              Tab(
+                text: "Ayuda",
+              ),
+              Tab(
+                text: "Contacto",
+              ),
+            ],
+          ),
+          title: Text('CFE'),
+        ),
+        body: TabBarView(
+          children: [
+            Icon(
+              Icons.account_circle_rounded,
+              size: 350,
+              color: Colors.red,
+            ),
+            Icon(
+              Icons.attach_money_sharp,
+              size: 350,
+              color: Colors.green,
+            ),
+            Icon(
+              Icons.calendar_month,
+              size: 350,
+              color: Colors.blue,
+            ),
+            Icon(
+              Icons.mark_chat_read,
+              size: 350,
+              color: Colors.blue,
+            ),
+            Icon(
+              Icons.call_sharp,
+              size: 350,
+              color: Colors.green,
+            ),
+          ],
         ),
       ),
     );
